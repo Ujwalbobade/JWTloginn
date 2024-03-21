@@ -3,6 +3,7 @@ package com.example.JWTlogin.Config;
 import com.example.JWTlogin.JWT.jwtauthenticationfilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -24,13 +25,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)throws Exception{
         System.out.println("security filterchain started");
         //disable cors
-        httpSecurity.cors(AbstractHttpConfigurer::disable);
+        httpSecurity.cors(Customizer.withDefaults());
         //disable Crsf
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         //http request filter
         httpSecurity.authorizeHttpRequests(reqmatcher->
                 reqmatcher.requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("auth/Signup").permitAll().anyRequest().authenticated());
+                        .requestMatchers("/auth/Signup").permitAll().anyRequest().authenticated());
 
         //authentication entry point ->exception handling
         httpSecurity.exceptionHandling(ex->ex.authenticationEntryPoint(authenticationentrypoint));

@@ -1,6 +1,10 @@
 package com.example.JWTlogin.Model;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+
+public enum Role  {
     ADMIN,
     USER,
 }

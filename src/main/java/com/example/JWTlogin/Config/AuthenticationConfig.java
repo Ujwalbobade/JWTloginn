@@ -43,10 +43,10 @@ public class AuthenticationConfig  {
     public PasswordEncoder bcryptpasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-   /* @Bean
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
         return builder.getAuthenticationManager();
-    }*/
+    }
 
 
 }
